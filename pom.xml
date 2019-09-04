@@ -6,7 +6,7 @@
 	
     <groupId>com.visitor</groupId>
     <artifactId>visitor</artifactId>
-    <version>4.0.0</version>
+    <version>1.0.0</version>
 
     <name>visitor</name>
 	<url>http://www.visitor.vip</url>
@@ -24,7 +24,7 @@
 	<packaging>pom</packaging>
     
     <properties>
-	    <visitor.version>4.0.0</visitor.version>
+	    <visitor.version>1.0.0</visitor.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -214,6 +214,13 @@
 	            <artifactId>common</artifactId>
 	            <version>${visitor.version}</version>
 	        </dependency>
+
+			<!--商城模块-->
+			<dependency>
+				<groupId>com.visitor</groupId>
+				<artifactId>shop</artifactId>
+				<version>${visitor.version}</version>
+			</dependency>
 	        
         </dependencies>
     </dependencyManagement>
