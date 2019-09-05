@@ -1,6 +1,9 @@
 package ${packageName}.domain;
 
+import com.visitor.common.core.domain.BaseEntity;
 import com.visitor.common.annotation.Excel;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 #if($table.crud)
 #elseif($table.tree)
 #end

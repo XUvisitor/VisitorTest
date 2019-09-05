@@ -31,25 +31,26 @@ public class MBrand extends BaseEntity
         this.searchValue = searchValue;
     }
 
-    public String getSearchValue() 
+    @Override
+    public String getSearchValue()
     {
         return searchValue;
     }
-    public void setId(Integer id) 
+    public void setId(Integer id)
     {
         this.id = id;
     }
 
-    public Integer getId() 
+    public Integer getId()
     {
         return id;
     }
-    public void setBrandName(String brandName) 
+    public void setBrandName(String brandName)
     {
         this.brandName = brandName;
     }
 
-    public String getBrandName() 
+    public String getBrandName()
     {
         return brandName;
     }

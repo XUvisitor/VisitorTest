@@ -3,13 +3,13 @@ visitor:
   # 名称
   name: visitor
   # 版本
-  version: 4.0.0
+  version: 1.0.0
   # 版权年份
   copyrightYear: 2019
   # 实例演示开关
   demoEnabled: true
   # 文件路径 示例（ Windows配置D:/visitor/uploadPath，Linux配置 /home/visitor/uploadPath）
-  profile: D:/visitor/uploadPath
+  profile: G:/visitor/uploadPath
   # 获取ip地址开关
   addressEnabled: true
   #项目地址
