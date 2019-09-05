@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visitor.shop.mapper.MTeamMapper">
+    
+    <resultMap type="MTeam" id="MTeamResult">
+        <result property="searchValue"    column="search_value"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="teamId"    column="team_id"    />
+        <result property="teamName"    column="team_name"    />
+    </resultMap>
+
+    <sql id="selectMTeamVo">
+        select search_value, create_by, create_time, update_by, update_time, remark, team_id, team_name from m_team
+    </sql>
+
+    <select id="selectMTeamList" parameterType="MTeam" resultMap="MTeamResult">
+        <include refid="selectMTeamVo"/>
+        <where>  
+            <if test="searchValue != null  and searchValue != ''"> and search_value = #{searchValue}</if>
+            <if test="teamName != null  and teamName != ''"> and team_name like concat('%', #{teamName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectMTeamById" parameterType="Integer" resultMap="MTeamResult">
+        <include refid="selectMTeamVo"/>
+        where team_id = #{teamId}
+    </select>
+        
+    <insert id="insertMTeam" parameterType="MTeam" useGeneratedKeys="true" keyProperty="teamId">
+        insert into m_team
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="searchValue != null  and searchValue != ''">search_value,</if>
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="remark != null  and remark != ''">remark,</if>
+            <if test="teamName != null  and teamName != ''">team_name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="searchValue != null  and searchValue != ''">#{searchValue},</if>
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''">#{remark},</if>
+            <if test="teamName != null  and teamName != ''">#{teamName},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMTeam" parameterType="MTeam">
+        update m_team
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="searchValue != null  and searchValue != ''">search_value = #{searchValue},</if>
+            <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''">remark = #{remark},</if>
+            <if test="teamName != null  and teamName != ''">team_name = #{teamName},</if>
+        </trim>
+        where team_id = #{teamId}
+    </update>
+
+    <delete id="deleteMTeamById" parameterType="Integer">
+        delete from m_team where team_id = #{teamId}
+    </delete>
+
+    <delete id="deleteMTeamByIds" parameterType="String">
+        delete from m_team where team_id in 
+        <foreach item="teamId" collection="array" open="(" separator="," close=")">
+            #{teamId}
+        </foreach>
+    </delete>
+    
+</mapper>
