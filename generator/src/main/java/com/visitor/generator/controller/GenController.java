@@ -175,7 +175,7 @@ public class GenController extends BaseController
     public void genCode(HttpServletResponse response, @PathVariable("tableName") String tableName) throws IOException
     {
         byte[] data = genTableService.generatorCode(tableName);
-        genCode(response, data, tableName);
+        genCode(response, data);
     }
 
     /**
@@ -189,16 +189,16 @@ public class GenController extends BaseController
     {
         String[] tableNames = Convert.toStrArray(tables);
         byte[] data = genTableService.generatorCode(tableNames);
-        genCode(response, data, tables);
+        genCode(response, data);
     }
 
     /**
      * 生成zip文件
      */
-    private void genCode(HttpServletResponse response, byte[] data, String tableName) throws IOException
+    private void genCode(HttpServletResponse response, byte[] data) throws IOException
     {
         response.reset();
-        response.setHeader("Content-Disposition", "attachment; filename=\"visitor.zip\""+tableName+".zip\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"visitor.zip\".zip\"");
         response.addHeader("Content-Length", "" + data.length);
         response.setContentType("application/octet-stream; charset=UTF-8");
         IOUtils.write(data, response.getOutputStream());

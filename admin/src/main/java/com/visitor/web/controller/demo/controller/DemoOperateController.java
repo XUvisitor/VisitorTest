@@ -92,16 +92,8 @@ public class DemoOperateController extends BaseController
         TableDataInfo rspData = new TableDataInfo();
         List<UserOperateModel> userList = new ArrayList<UserOperateModel>(users.values());
         // 查询条件过滤
-        if (StringUtils.isNotEmpty(userModel.getSearchValue()))
-        {
-            userList.clear();
-            for (Map.Entry<Integer, UserOperateModel> entry : users.entrySet())
-            {
-                if (entry.getValue().getUserName().equals(userModel.getSearchValue()))
-                {
-                    userList.add(entry.getValue());
-                }
-            }
+        for (Map.Entry<Integer, UserOperateModel> entry : users.entrySet()) {
+            userList.add(entry.getValue());
         }
         PageDomain pageDomain = TableSupport.buildPageRequest();
         if (null == pageDomain.getPageNum() || null == pageDomain.getPageSize())
