@@ -7,7 +7,7 @@ import java.util.List;
  * 队伍Service接口
  * 
  * @author visitor
- * @date 2019-09-05
+ * @date 2019-09-06
  */
 public interface IMTeamService 
 {

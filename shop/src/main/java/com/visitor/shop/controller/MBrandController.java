@@ -1,9 +1,9 @@
 package com.visitor.shop.controller;
 
+import org.springframework.stereotype.Controller;
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +20,10 @@ import com.visitor.common.utils.poi.ExcelUtil;
 import com.visitor.common.core.page.TableDataInfo;
 
 /**
- * m_brandController
+ * 品牌Controller
  * 
  * @author visitor
- * @date 2019-09-04
+ * @date 2019-09-06
  */
 @Controller
 @RequestMapping("/shop/brand")
@@ -42,7 +42,7 @@ public class MBrandController extends BaseController
     }
 
     /**
-     * 查询m_brand列表
+     * 查询品牌列表
      */
     @RequiresPermissions("shop:brand:list")
     @PostMapping("/list")
@@ -55,7 +55,7 @@ public class MBrandController extends BaseController
     }
 
     /**
-     * 导出m_brand列表
+     * 导出品牌列表
      */
     @RequiresPermissions("shop:brand:export")
     @PostMapping("/export")
@@ -68,7 +68,7 @@ public class MBrandController extends BaseController
     }
 
     /**
-     * 新增m_brand
+     * 新增品牌
      */
     @GetMapping("/add")
     public String add()
@@ -77,10 +77,10 @@ public class MBrandController extends BaseController
     }
 
     /**
-     * 新增保存m_brand
+     * 新增保存品牌
      */
     @RequiresPermissions("shop:brand:add")
-    @Log(title = "m_brand", businessType = BusinessType.INSERT)
+    @Log(title = "品牌", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(MBrand mBrand)
@@ -89,7 +89,7 @@ public class MBrandController extends BaseController
     }
 
     /**
-     * 修改m_brand
+     * 修改品牌
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -100,10 +100,10 @@ public class MBrandController extends BaseController
     }
 
     /**
-     * 修改保存m_brand
+     * 修改保存品牌
      */
     @RequiresPermissions("shop:brand:edit")
-    @Log(title = "m_brand", businessType = BusinessType.UPDATE)
+    @Log(title = "品牌", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(MBrand mBrand)
@@ -112,10 +112,10 @@ public class MBrandController extends BaseController
     }
 
     /**
-     * 删除m_brand
+     * 删除品牌
      */
     @RequiresPermissions("shop:brand:remove")
-    @Log(title = "m_brand", businessType = BusinessType.DELETE)
+    @Log(title = "品牌", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

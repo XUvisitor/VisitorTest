@@ -1,7 +1,6 @@
 -- auto Generated on 2019-09-05
 -- DROP TABLE IF EXISTS m_team;
 CREATE TABLE m_team(
-	search_value VARCHAR (50) COMMENT '搜索值',
 	create_by VARCHAR (50) COMMENT '创建者',
 	create_time DATETIME COMMENT '创建时间',
 	update_by VARCHAR (50) COMMENT '更新者',

@@ -5,7 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.visitor.shop.mapper.MBrandMapper">
     
     <resultMap type="MBrand" id="MBrandResult">
-        <result property="searchValue"    column="search_value"    />
         <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateBy"    column="update_by"    />
@@ -16,13 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectMBrandVo">
-        select search_value, create_by, create_time, update_by, update_time, remark, id, brand_name from m_brand
+        select create_by, create_time, update_by, update_time, remark, id, brand_name from m_brand
     </sql>
 
     <select id="selectMBrandList" parameterType="MBrand" resultMap="MBrandResult">
         <include refid="selectMBrandVo"/>
         <where>  
-            <if test="searchValue != null  and searchValue != ''"> and search_value = #{searchValue}</if>
             <if test="brandName != null  and brandName != ''"> and brand_name like concat('%', #{brandName}, '%')</if>
         </where>
     </select>
@@ -35,7 +33,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertMBrand" parameterType="MBrand" useGeneratedKeys="true" keyProperty="id">
         insert into m_brand
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="searchValue != null  and searchValue != ''">search_value,</if>
             <if test="createBy != null  and createBy != ''">create_by,</if>
             <if test="createTime != null ">create_time,</if>
             <if test="updateBy != null  and updateBy != ''">update_by,</if>
@@ -44,7 +41,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="brandName != null  and brandName != ''">brand_name,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="searchValue != null  and searchValue != ''">#{searchValue},</if>
             <if test="createBy != null  and createBy != ''">#{createBy},</if>
             <if test="createTime != null ">#{createTime},</if>
             <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
@@ -57,7 +53,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateMBrand" parameterType="MBrand">
         update m_brand
         <trim prefix="SET" suffixOverrides=",">
-            <if test="searchValue != null  and searchValue != ''">search_value = #{searchValue},</if>
             <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
             <if test="createTime != null ">create_time = #{createTime},</if>
             <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>

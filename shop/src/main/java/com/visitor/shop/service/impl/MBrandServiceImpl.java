@@ -10,10 +10,10 @@ import com.visitor.shop.service.IMBrandService;
 import com.visitor.common.core.text.Convert;
 
 /**
- * m_brandService业务层处理
+ * 品牌Service业务层处理
  * 
  * @author visitor
- * @date 2019-09-04
+ * @date 2019-09-06
  */
 @Service
 public class MBrandServiceImpl implements IMBrandService 
@@ -22,10 +22,10 @@ public class MBrandServiceImpl implements IMBrandService
     private MBrandMapper mBrandMapper;
 
     /**
-     * 查询m_brand
+     * 查询品牌
      * 
-     * @param id m_brandID
-     * @return m_brand
+     * @param id 品牌ID
+     * @return 品牌
      */
     @Override
     public MBrand selectMBrandById(Integer id)
@@ -34,10 +34,10 @@ public class MBrandServiceImpl implements IMBrandService
     }
 
     /**
-     * 查询m_brand列表
+     * 查询品牌列表
      * 
-     * @param mBrand m_brand
-     * @return m_brand
+     * @param mBrand 品牌
+     * @return 品牌
      */
     @Override
     public List<MBrand> selectMBrandList(MBrand mBrand)
@@ -46,9 +46,9 @@ public class MBrandServiceImpl implements IMBrandService
     }
 
     /**
-     * 新增m_brand
+     * 新增品牌
      * 
-     * @param mBrand m_brand
+     * @param mBrand 品牌
      * @return 结果
      */
     @Override
@@ -59,9 +59,9 @@ public class MBrandServiceImpl implements IMBrandService
     }
 
     /**
-     * 修改m_brand
+     * 修改品牌
      * 
-     * @param mBrand m_brand
+     * @param mBrand 品牌
      * @return 结果
      */
     @Override
@@ -72,7 +72,7 @@ public class MBrandServiceImpl implements IMBrandService
     }
 
     /**
-     * 删除m_brand对象
+     * 删除品牌对象
      * 
      * @param ids 需要删除的数据ID
      * @return 结果
@@ -84,9 +84,9 @@ public class MBrandServiceImpl implements IMBrandService
     }
 
     /**
-     * 删除m_brand信息
+     * 删除品牌信息
      * 
-     * @param id m_brandID
+     * @param id 品牌ID
      * @return 结果
      */
     public int deleteMBrandById(Integer id)

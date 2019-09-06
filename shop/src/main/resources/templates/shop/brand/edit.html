@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('修改m_brand')" />
+    <th:block th:include="include :: header('修改品牌')" />
 </head>
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-brand-edit" th:object="${mBrand}">
             <input name="id" th:field="*{id}" type="hidden">
             <div class="form-group">    
-                <label class="col-sm-3 control-label">搜索值：</label>
-                <div class="col-sm-8">
-                    <input name="searchValue" th:field="*{searchValue}" class="form-control" type="text" required>
-                </div>
-            </div>
-            <div class="form-group">    
                 <label class="col-sm-3 control-label">品牌名称：</label>
                 <div class="col-sm-8">
                     <input name="brandName" th:field="*{brandName}" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">备注：</label>
+                <div class="col-sm-8">
+                    <input name="remark" th:field="*{remark}" class="form-control" type="text">
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 若无备注，可不写</span>
                 </div>
             </div>
         </form>

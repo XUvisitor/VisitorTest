@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('新增品牌')" />
+    <th:block th:include="include :: header('新增用途')" />
 </head>
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-        <form class="form-horizontal m" id="form-brand-add">
+        <form class="form-horizontal m" id="form-use-add">
             <div class="form-group">    
-                <label class="col-sm-3 control-label">品牌名称：</label>
+                <label class="col-sm-3 control-label">用途名称：</label>
                 <div class="col-sm-8">
-                    <input name="brandName" class="form-control" type="text" required>
+                    <input name="useName" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">
@@ -23,14 +23,14 @@
     </div>
     <th:block th:include="include :: footer" />
     <script type="text/javascript">
-        var prefix = ctx + "shop/brand"
-        $("#form-brand-add").validate({
+        var prefix = ctx + "shop/use"
+        $("#form-use-add").validate({
             focusCleanup: true
         });
 
         function submitHandler() {
             if ($.validate.form()) {
-                $.operate.save(prefix + "/add", $('#form-brand-add').serialize());
+                $.operate.save(prefix + "/add", $('#form-use-add').serialize());
             }
         }
     </script>

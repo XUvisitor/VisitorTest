@@ -1,9 +1,9 @@
 package com.visitor.shop.controller;
 
+import org.springframework.stereotype.Controller;
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +23,7 @@ import com.visitor.common.core.page.TableDataInfo;
  * 队伍Controller
  * 
  * @author visitor
- * @date 2019-09-05
+ * @date 2019-09-06
  */
 @Controller
 @RequestMapping("/shop/team")
