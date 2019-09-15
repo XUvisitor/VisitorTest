@@ -6,10 +6,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * 商品对象 m_product
+ * m_product对象 m_product
  * 
  * @author visitor
- * @date 2019-09-09
+ * @date 2019-09-13
  */
 public class MProduct extends BaseEntity
 {
@@ -28,7 +28,7 @@ public class MProduct extends BaseEntity
 
     /** 产品描述 */
     @Excel(name = "产品描述")
-    private String describe;
+    private String productDescribe;
 
     /** 产品图片 */
     @Excel(name = "产品图片")
@@ -36,22 +36,22 @@ public class MProduct extends BaseEntity
 
     /** 产品品牌 */
     @Excel(name = "产品品牌")
-    private Integer brandId;
+    private String brandName;
 
     /** 所属队伍 */
     @Excel(name = "所属队伍")
-    private Integer teamId;
+    private String teamName;
 
     /** 产品用途 */
     @Excel(name = "产品用途")
-    private Integer useId;
+    private String useName;
 
-    public void setProductId(Integer productId) 
+    public void setProductId(Integer productId)
     {
         this.productId = productId;
     }
 
-    public Integer getProductId() 
+    public Integer getProductId()
     {
         return productId;
     }
@@ -73,14 +73,14 @@ public class MProduct extends BaseEntity
     {
         return price;
     }
-    public void setDescribe(String describe) 
+    public void setProductDescribe(String productDescribe) 
     {
-        this.describe = describe;
+        this.productDescribe = productDescribe;
     }
 
-    public String getDescribe() 
+    public String getProductDescribe() 
     {
-        return describe;
+        return productDescribe;
     }
     public void setImage(String image) 
     {
@@ -91,32 +91,32 @@ public class MProduct extends BaseEntity
     {
         return image;
     }
-    public void setBrandId(Integer brandId) 
+    public void setBrandName(String brandName) 
     {
-        this.brandId = brandId;
+        this.brandName = brandName;
     }
 
-    public Integer getBrandId() 
+    public String getBrandName() 
     {
-        return brandId;
+        return brandName;
     }
-    public void setTeamId(Integer teamId) 
+    public void setTeamName(String teamName) 
     {
-        this.teamId = teamId;
-    }
-
-    public Integer getTeamId() 
-    {
-        return teamId;
-    }
-    public void setUseId(Integer useId) 
-    {
-        this.useId = useId;
+        this.teamName = teamName;
     }
 
-    public Integer getUseId() 
+    public String getTeamName() 
     {
-        return useId;
+        return teamName;
+    }
+    public void setUseName(String useName) 
+    {
+        this.useName = useName;
+    }
+
+    public String getUseName() 
+    {
+        return useName;
     }
 
     @Override
@@ -130,11 +130,11 @@ public class MProduct extends BaseEntity
             .append("productId", getProductId())
             .append("productName", getProductName())
             .append("price", getPrice())
-            .append("describe", getDescribe())
+            .append("productDescribe", getProductDescribe())
             .append("image", getImage())
-            .append("brandId", getBrandId())
-            .append("teamId", getTeamId())
-            .append("useId", getUseId())
+            .append("brandName", getBrandName())
+            .append("teamName", getTeamName())
+            .append("useName", getUseName())
             .toString();
     }
 }
