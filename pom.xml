@@ -9,9 +9,6 @@
     <version>1.0.0</version>
 
     <name>visitor</name>
-	<url>http://www.visitor.vip</url>
-    <description>若依管理系统</description>
-
 
 	<modules>
 		<module>admin</module>

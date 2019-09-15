@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改订单')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-list-edit" th:object="${mOrderList}">
+            <input name="orderListId" th:field="*{orderListId}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">订单状态：</label>
+                <div class="col-sm-8">
+                    <input name="orderListCondition" th:field="*{orderListCondition}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">商品编号：</label>
+                <div class="col-sm-8">
+                    <input name="orderListProductId" th:field="*{orderListProductId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">收获状态：</label>
+                <div class="col-sm-8">
+                    <input name="orderListTake" th:field="*{orderListTake}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">订单金额：</label>
+                <div class="col-sm-8">
+                    <input name="orderListAmount" th:field="*{orderListAmount}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script type="text/javascript">
+        var prefix = ctx + "shop/list";
+        $("#form-list-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-list-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visitor.shop.mapper.MOrderListMapper">
+    
+    <resultMap type="MOrderList" id="MOrderListResult">
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="orderListId"    column="order_list_id"    />
+        <result property="orderListCondition"    column="order_list_condition"    />
+        <result property="orderListProductId"    column="order_list_product_id"    />
+        <result property="orderListBuyerId"    column="order_list_buyer_id"    />
+        <result property="orderListTake"    column="order_list_take"    />
+        <result property="orderListAmount"    column="order_list_amount"    />
+    </resultMap>
+
+    <sql id="selectMOrderListVo">
+        select create_by, create_time, update_by, update_time, remark, order_list_id, order_list_condition, order_list_product_id, order_list_buyer_id, order_list_take, order_list_amount from m_order_list
+    </sql>
+
+    <select id="selectMOrderListList" parameterType="MOrderList" resultMap="MOrderListResult">
+        <include refid="selectMOrderListVo"/>
+        <where>  
+            <if test="orderListCondition != null  and orderListCondition != ''"> and order_list_condition = #{orderListCondition}</if>
+            <if test="orderListProductId != null  and orderListProductId != ''"> and order_list_product_id = #{orderListProductId}</if>
+            <if test="orderListBuyerId != null  and orderListBuyerId != ''"> and order_list_buyer_id = #{orderListBuyerId}</if>
+            <if test="orderListTake != null  and orderListTake != ''"> and order_list_take = #{orderListTake}</if>
+            <if test="orderListAmount != null "> and order_list_amount = #{orderListAmount}</if>
+        </where>
+    </select>
+    
+    <select id="selectMOrderListById" parameterType="String" resultMap="MOrderListResult">
+        <include refid="selectMOrderListVo"/>
+        where order_list_id = #{orderListId}
+    </select>
+        
+    <insert id="insertMOrderList" parameterType="MOrderList">
+        insert into m_order_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="remark != null  and remark != ''">remark,</if>
+            <if test="orderListId != null  and orderListId != ''">order_list_id,</if>
+            <if test="orderListCondition != null  and orderListCondition != ''">order_list_condition,</if>
+            <if test="orderListProductId != null  and orderListProductId != ''">order_list_product_id,</if>
+            <if test="orderListBuyerId != null  and orderListBuyerId != ''">order_list_buyer_id,</if>
+            <if test="orderListTake != null  and orderListTake != ''">order_list_take,</if>
+            <if test="orderListAmount != null ">order_list_amount,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''">#{remark},</if>
+            <if test="orderListId != null  and orderListId != ''">#{orderListId},</if>
+            <if test="orderListCondition != null  and orderListCondition != ''">#{orderListCondition},</if>
+            <if test="orderListProductId != null  and orderListProductId != ''">#{orderListProductId},</if>
+            <if test="orderListBuyerId != null  and orderListBuyerId != ''">#{orderListBuyerId},</if>
+            <if test="orderListTake != null  and orderListTake != ''">#{orderListTake},</if>
+            <if test="orderListAmount != null ">#{orderListAmount},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMOrderList" parameterType="MOrderList">
+        update m_order_list
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''">remark = #{remark},</if>
+            <if test="orderListCondition != null  and orderListCondition != ''">order_list_condition = #{orderListCondition},</if>
+            <if test="orderListProductId != null  and orderListProductId != ''">order_list_product_id = #{orderListProductId},</if>
+            <if test="orderListBuyerId != null  and orderListBuyerId != ''">order_list_buyer_id = #{orderListBuyerId},</if>
+            <if test="orderListTake != null  and orderListTake != ''">order_list_take = #{orderListTake},</if>
+            <if test="orderListAmount != null ">order_list_amount = #{orderListAmount},</if>
+        </trim>
+        where order_list_id = #{orderListId}
+    </update>
+
+    <delete id="deleteMOrderListById" parameterType="String">
+        delete from m_order_list where order_list_id = #{orderListId}
+    </delete>
+
+    <delete id="deleteMOrderListByIds" parameterType="String">
+        delete from m_order_list where order_list_id in 
+        <foreach item="orderListId" collection="array" open="(" separator="," close=")">
+            #{orderListId}
+        </foreach>
+    </delete>
+    
+</mapper>

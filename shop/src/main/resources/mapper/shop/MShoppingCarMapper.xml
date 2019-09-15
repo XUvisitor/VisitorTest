@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visitor.shop.mapper.MShoppingCarMapper">
+    
+    <resultMap type="MShoppingCar" id="MShoppingCarResult">
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="shoppingCarId"    column="shopping_car_id"    />
+        <result property="shoppingProductId"    column="shopping_product_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="count"    column="count"    />
+    </resultMap>
+
+    <sql id="selectMShoppingCarVo">
+        select create_by, create_time, update_by, update_time, remark, shopping_car_id, shopping_product_id, user_id, count from m_shopping_car
+    </sql>
+
+    <select id="selectMShoppingCarList" parameterType="MShoppingCar" resultMap="MShoppingCarResult">
+        <include refid="selectMShoppingCarVo"/>
+        <where>  
+            <if test="shoppingProductId != null  and shoppingProductId != ''"> and shopping_product_id = #{shoppingProductId}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="count != null "> and count = #{count}</if>
+        </where>
+    </select>
+    
+    <select id="selectMShoppingCarById" parameterType="Integer" resultMap="MShoppingCarResult">
+        <include refid="selectMShoppingCarVo"/>
+        where shopping_car_id = #{shoppingCarId}
+    </select>
+        
+    <insert id="insertMShoppingCar" parameterType="MShoppingCar" useGeneratedKeys="true" keyProperty="shoppingCarId">
+        insert into m_shopping_car
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="remark != null  and remark != ''">remark,</if>
+            <if test="shoppingProductId != null  and shoppingProductId != ''">shopping_product_id,</if>
+            <if test="userId != null ">user_id,</if>
+            <if test="count != null ">count,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''">#{remark},</if>
+            <if test="shoppingProductId != null  and shoppingProductId != ''">#{shoppingProductId},</if>
+            <if test="userId != null ">#{userId},</if>
+            <if test="count != null ">#{count},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMShoppingCar" parameterType="MShoppingCar">
+        update m_shopping_car
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''">remark = #{remark},</if>
+            <if test="shoppingProductId != null  and shoppingProductId != ''">shopping_product_id = #{shoppingProductId},</if>
+            <if test="userId != null ">user_id = #{userId},</if>
+            <if test="count != null ">count = #{count},</if>
+        </trim>
+        where shopping_car_id = #{shoppingCarId}
+    </update>
+
+    <delete id="deleteMShoppingCarById" parameterType="Integer">
+        delete from m_shopping_car where shopping_car_id = #{shoppingCarId}
+    </delete>
+
+    <delete id="deleteMShoppingCarByIds" parameterType="String">
+        delete from m_shopping_car where shopping_car_id in 
+        <foreach item="shoppingCarId" collection="array" open="(" separator="," close=")">
+            #{shoppingCarId}
+        </foreach>
+    </delete>
+    
+</mapper>

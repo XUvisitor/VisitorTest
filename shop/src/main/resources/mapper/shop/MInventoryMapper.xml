@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visitor.shop.mapper.MInventoryMapper">
+    
+    <resultMap type="MInventory" id="MInventoryResult">
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="inventoryId"    column="inventory_id"    />
+        <result property="productSize"    column="product_size"    />
+        <result property="productNumber"    column="product_number"    />
+        <result property="inventoryProductId"    column="inventory_product_id"    />
+    </resultMap>
+
+    <sql id="selectMInventoryVo">
+        select create_by, create_time, update_by, update_time, remark, inventory_id, product_size, product_number, inventory_product_id from m_inventory
+    </sql>
+
+    <select id="selectMInventoryList" parameterType="MInventory" resultMap="MInventoryResult">
+        <include refid="selectMInventoryVo"/>
+        <where>  
+            <if test="productSize != null  and productSize != ''"> and product_size = #{productSize}</if>
+            <if test="productNumber != null "> and product_number = #{productNumber}</if>
+            <if test="inventoryProductId != null  and inventoryProductId != ''"> and inventory_product_id = #{inventoryProductId}</if>
+        </where>
+    </select>
+    
+    <select id="selectMInventoryById" parameterType="Integer" resultMap="MInventoryResult">
+        <include refid="selectMInventoryVo"/>
+        where inventory_id = #{inventoryId}
+    </select>
+        
+    <insert id="insertMInventory" parameterType="MInventory" useGeneratedKeys="true" keyProperty="inventoryId">
+        insert into m_inventory
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="remark != null  and remark != ''">remark,</if>
+            <if test="productSize != null  and productSize != ''">product_size,</if>
+            <if test="productNumber != null ">product_number,</if>
+            <if test="inventoryProductId != null  and inventoryProductId != ''">inventory_product_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''">#{remark},</if>
+            <if test="productSize != null  and productSize != ''">#{productSize},</if>
+            <if test="productNumber != null ">#{productNumber},</if>
+            <if test="inventoryProductId != null  and inventoryProductId != ''">#{inventoryProductId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMInventory" parameterType="MInventory">
+        update m_inventory
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''">remark = #{remark},</if>
+            <if test="productSize != null  and productSize != ''">product_size = #{productSize},</if>
+            <if test="productNumber != null ">product_number = #{productNumber},</if>
+            <if test="inventoryProductId != null  and inventoryProductId != ''">inventory_product_id = #{inventoryProductId},</if>
+        </trim>
+        where inventory_id = #{inventoryId}
+    </update>
+
+    <delete id="deleteMInventoryById" parameterType="Integer">
+        delete from m_inventory where inventory_id = #{inventoryId}
+    </delete>
+
+    <delete id="deleteMInventoryByIds" parameterType="String">
+        delete from m_inventory where inventory_id in 
+        <foreach item="inventoryId" collection="array" open="(" separator="," close=")">
+            #{inventoryId}
+        </foreach>
+    </delete>
+    
+</mapper>
