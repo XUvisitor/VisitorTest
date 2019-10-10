@@ -73,6 +73,12 @@
             <artifactId>shop</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.visitor</groupId>
+            <artifactId>quartz</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

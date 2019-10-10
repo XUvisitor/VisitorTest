@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +18,11 @@
     <link th:href="@{/visitor/css/ry-ui.css?v=4.0.0}" rel="stylesheet"/>
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden" th:classappend="|${@config.getKey('sys.index.sideTheme')} ${@config.getKey('sys.index.skinName')}|">
+<shiro:lacksRole name="admin">
+	<script>
+        window.location.href = 'stage/shop';
+	</script>
+</shiro:lacksRole>
 <div id="wrapper">
 
     <!--左侧导航开始-->

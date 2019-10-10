@@ -20,6 +20,8 @@ import com.visitor.system.service.ISysMenuService;
 @Controller
 public class SysIndexController extends BaseController
 {
+
+
     @Autowired
     private ISysMenuService menuService;
 

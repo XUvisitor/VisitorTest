@@ -218,7 +218,6 @@
 				<artifactId>shop</artifactId>
 				<version>${visitor.version}</version>
 			</dependency>
-	        
         </dependencies>
     </dependencyManagement>
 
